@@ -1,0 +1,9 @@
+{
+  "name"            : "Example",
+  "description"     : "This is another example, using directory",
+  "fromDir"         : "Example",
+  "toDir"           : "n.a.",
+  "fromTos" : {
+      "Example"  : "n.a."
+   }
+}

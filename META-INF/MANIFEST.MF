@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ProjBldScalaGui
+Bundle-SymbolicName: ProjBldScalaGui
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.swt;bundle-version="3.7.2",
+ org.scala-ide.scala.library;bundle-version="2.9.3",
+ org.eclipse.jface;bundle-version="3.7.0"
+Export-Package: flca.projbld.gui;uses:="org.eclipse.swt.widgets,scala"

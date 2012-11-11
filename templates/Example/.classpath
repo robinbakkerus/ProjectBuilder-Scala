@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src-test"/>
+	<classpathentry kind="src" path="src-api"/>
+	<classpathentry kind="src" path="src-jet-generated"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M3_REPO/commons-lang/commons-lang/2.6/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="/flca.mda.base.api/bin"/>
+	<classpathentry kind="lib" path="/flca.mda.common.api/bin"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

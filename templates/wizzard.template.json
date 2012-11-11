@@ -1,0 +1,10 @@
+{
+  "name"            : "Wizzard 1",
+  "description"     : "This is test template for wizzard 1, using zipfile",
+  "fromDir"         : "wizzard.zip",
+  "toDir"           : "n.a.",
+  "fromTos" : {
+      "WizzardTemplate"  : "n.a.",
+      "com.wizzard"                : "n.a."
+   }
+}

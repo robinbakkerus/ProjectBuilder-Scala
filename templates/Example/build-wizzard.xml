@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="Demo" default="jar" basedir=".">
+
+	<property file="build.props" />
+	
+	<property file="build.props" />
+	
+	<target name="jar">
+		<echo message="creating ${cartridge.jar}" />
+		<jar destfile="${cartridge.jar}" basedir="bin"
+		             excludes="test/model/*.class" />
+	</target>
+		
+		
+</project>
