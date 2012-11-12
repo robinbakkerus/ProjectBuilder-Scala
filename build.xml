@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<project name="Philips Build" default="create_run_jar" basedir=".">
+
+	<target name="init">
+		<property file="build.properties" />
+		<property name="scala-library.jar" value="${scala.home}/lib/scala-library.jar"  />
+		<property name="build.dir"  value="bin" />
+		<property name="src.dir"  value="src" />
+		<path id="build.classpath">
+	  		<pathelement location="${scala-library.jar}"   />
+			
+			<pathelement location="${m3.repo}/org/codehaus/jackson/jackson-core-asl/1.9.10/jackson-core-asl-1.9.10.jar"/>
+			<pathelement location="${m3.repo}/org/codehaus/jackson/jackson-mapper-asl/1.9.10/jackson-mapper-asl-1.9.10.jar"/>
+			<pathelement location="${m3.repo}/com/codahale/jerkson_2.9.1/0.5.0/jerkson_2.9.1-0.5.0.jar"/>
+			<pathelement location="${m3.repo}/junit/junit/4.9/junit-4.9.jar"/>
+			<pathelement location="${m3.repo}/org.hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar"/>
+			<pathelement location="${m3.repo}/org.scalatest/scalatest_2.9.2/1.8/scalatest_2.9.2-1.8.jar"/>
+	
+			<pathelement location="${eclipse}/plugins/org.eclipse.jface_3.7.0.v20110928-1505.jar" />
+			<pathelement location="${eclipse}/plugins/org.eclipse.swt.win32.win32.x86_3.7.2.v3740f.jar" />
+			
+			<pathelement location="${build.dir}"   />
+		</path>
+	
+		
+		<taskdef resource="scala/tools/ant/antlib.xml">
+	  		<classpath>
+	    		<pathelement location="${scala.home}/lib/scala-compiler.jar"   />
+	    		<pathelement location="${scala-library.jar}"   />
+	  		</classpath>
+		</taskdef>
+	</target>
+	
+	<target name="compile" depends="init">
+		<mkdir dir="${build.dir}"/>
+	    <echo message="${scala-library.jar}" />
+		<scalac srcdir="${src.dir}" destdir="${build.dir}"
+		        classpathref="build.classpath" force="changed">
+		        <!-- addparams="-Yclosure-elim -optimise" -->
+		  <include name="**/*.scala"/>
+		</scalac>
+	
+		<javac srcdir="${src.dir}" destdir="${build.dir}"
+		        classpathref="build.classpath" >
+		  <include name="**/*.java"/>
+		</javac>
+	</target>
+
+    <target name="create_run_jar" depends="compile" >
+        <jar destfile="./ProjBuilder.jar">
+            <manifest>
+                 <attribute name="Main-Class" value="flca.projbld.ProjBuildJavaMain"/>
+                 <attribute name="Class-Path" value=". ProjBuilder_lib/jackson-core-asl-1.9.10.jar ProjBuilder_lib/jackson-mapper-asl-1.9.10.jar ProjBuilder_lib/jerkson_2.9.1-0.5.0.jar ProjBuilder_lib/org.eclipse.swt_3.7.2.v3740f.jar ProjBuilder_lib/org.eclipse.swt.win32.win32.x86_3.7.2.v3740f.jar ProjBuilder_lib/org.scala-ide.scala.library_2.9.3.v20120906-004703-4c11a6593c.jar ProjBuilder_lib/scala-library.jar ProjBuilder_lib/scala-swing.jar ProjBuilder_lib/scala-dbc.jar ProjBuilder_lib/org.eclipse.jface_3.7.0.v20110928-1505.jar ProjBuilder_lib/org.eclipse.core.commands_3.6.0.I20110111-0800.jar ProjBuilder_lib/junit-4.9.jar ProjBuilder_lib/hamcrest-core-1.1.jar ProjBuilder_lib/scalatest_2.9.2-1.8.jar"/>
+             </manifest>
+        	<fileset dir="./bin"/>
+         </jar>
+             
+        <delete dir="./ProjBuilder_lib"/>
+        <mkdir dir="./ProjBuilder_lib"/>
+
+		<copy file="${m3.repo}/org/codehaus/jackson/jackson-core-asl/1.9.10/jackson-core-asl-1.9.10.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${m3.repo}/org/codehaus/jackson/jackson-mapper-asl/1.9.10/jackson-mapper-asl-1.9.10.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${m3.repo}/com/codahale/jerkson_2.9.1/0.5.0/jerkson_2.9.1-0.5.0.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${m3.repo}/org.hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${m3.repo}/org.scalatest/scalatest_2.9.2/1.8/scalatest_2.9.2-1.8.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${m3.repo}/junit/junit/4.9/junit-4.9.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${eclipse}/plugins/org.eclipse.swt_3.7.2.v3740f.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${eclipse}/plugins/org.eclipse.swt.win32.win32.x86_3.7.2.v3740f.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${eclipse}/plugins/org.scala-ide.scala.library_2.9.3.v20120906-004703-4c11a6593c.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${eclipse}/plugins/org.eclipse.jface_3.7.0.v20110928-1505.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${eclipse}/plugins/org.eclipse.core.commands_3.6.0.I20110111-0800.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${scala.home}/lib/scala-library.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${scala.home}/lib/scala-swing.jar" todir="./ProjBuilder_lib"/>
+		<copy file="${scala.home}/lib/scala-dbc.jar" todir="./ProjBuilder_lib"/>
+
+    </target>
+	
+</project>
