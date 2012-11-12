@@ -42,11 +42,14 @@ Copy one of the xxx.template.json files, and edit this accordingly. Note the fro
 or the name of the zipfile that you created from the template. Also note that you can add more 'fromTos' if needed.
 That's all.
 
-Notes:
+Compile & Build Notes:
 To get rid of compile errors: 
 define java classpath variable M3_REPO that points to the /m3-repo folder (that is part of this project)
+To build a standalone runable jar file execute "ant" from the install dir.
 
 To run this application from Eclipse:
 either Scala-run ProjBuilderMain 
 or Java-run ProjBuildJavaMain
+or use the command-line script: projbuild.bat  or projbuild.sh
+ 
 
